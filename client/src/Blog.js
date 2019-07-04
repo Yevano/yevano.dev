@@ -35,7 +35,7 @@ class Blog extends Component {
   componentDidMount() {
     const options = {
       method: 'POST',
-      uri: `https://${clientConfig.apiHost}:${dbConfig.apiPort}/api/db`,
+      uri: `https://${clientConfig.apiHost}:${clientConfig.apiPort}/api/db`,
       body: {
         action: 'get-posts'
       },
