@@ -1,0 +1,56 @@
+{
+  "name": "yevano-me-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "detect-browser": "^4.5.1",
+    "draft-js": "^0.10.5",
+    "grommet": "^2.7.1",
+    "history": "^4.9.0",
+    "mongoose": "^5.6.2",
+    "radium": "^0.25.2",
+    "react": "^16.8.6",
+    "react-browser-detection": "^1.2.1",
+    "react-dom": "^16.8.6",
+    "react-draft-wysiwyg": "^1.13.2",
+    "react-render-html": "^0.6.0",
+    "react-router": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "request-promise": "^4.2.4",
+    "smoothscroll-polyfill": "^0.4.4",
+    "styled-components": "^4.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && rm -r probuild && cp -r build probuild",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "buildrun": "react-scripts build && sudo node index.js 5000"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-pino-logger": "^4.0.0",
+    "node-env-run": "^3.0.2",
+    "nodemon": "^1.19.1",
+    "npm-run-all": "^4.1.5",
+    "pino-colada": "^1.4.4",
+    "concurrently": "^4.1.1"
+  },
+  "proxy": "https://localhost:5000/"
+}

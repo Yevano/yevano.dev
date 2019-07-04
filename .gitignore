@@ -1,0 +1,8 @@
+/client/node_modules
+/client/build
+/client/probuild
+/client/.env
+/client/src/client.config.js
+
+/server/node_modules
+/server/server.config.js
