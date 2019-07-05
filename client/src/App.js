@@ -6,6 +6,14 @@ import { Route, Router } from 'react-router';
 import { createBrowserHistory } from 'history';
 import { detect } from 'detect-browser';
 import ButtonLink from './ButtonLink';
+import {
+  AppBar,
+  Box,
+  Button,
+  Toolbar
+} from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './theme';
 
 const browser = detect();
 const history = createBrowserHistory();
@@ -13,7 +21,27 @@ const history = createBrowserHistory();
 class NavBar extends Component {
   render() {
     return (
-      null
+      <ThemeProvider theme={ theme }>
+        <AppBar position='static'>
+          <Toolbar>
+            <Button
+              color='inherit'
+              onClick={ () => history.push('/portfolio') }
+            >
+              Portfolio
+            </Button>
+            <Button
+              color='inherit'
+              onClick={ () => history.push('/blog') }
+              style={ {
+                marginLeft: '10px'
+              } }
+            >
+              Blog
+            </Button>
+          </Toolbar>
+        </AppBar>
+      </ThemeProvider>
     );
   }
 }
@@ -25,7 +53,19 @@ class App extends Component {
     }
 
     return (
-      null
+      (() => {
+        if(browser.name === 'ie') {
+          return <IENotSupported />;
+        } else {
+          return (
+            <Router history={ history }>
+              <NavBar />
+              <Route path='/portfolio' component={ Portfolio } />
+              <Route path='/blog' component={ Blog } />
+            </Router>
+          );
+        }
+      })()
     );
   }
 }
