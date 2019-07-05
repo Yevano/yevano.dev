@@ -6,7 +6,6 @@ import rp from 'request-promise';
 import renderHtml from 'react-render-html';
 import { createBrowserHistory } from 'history';
 import smoothscroll from 'smoothscroll-polyfill';
-import ButtonLink from './ButtonLink';
 import clientConfig from './client.config';
 import {
   Box,

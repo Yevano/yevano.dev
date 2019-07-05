@@ -5,7 +5,6 @@ import IENotSupported from './IENotSupported';
 import { Route, Router } from 'react-router';
 import { createBrowserHistory } from 'history';
 import { detect } from 'detect-browser';
-import ButtonLink from './ButtonLink';
 import {
   AppBar,
   Box,
