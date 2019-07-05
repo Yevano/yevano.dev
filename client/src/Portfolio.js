@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ProjectDescription from './ProjectDescription';
 import {
   Box,
   Grid,
