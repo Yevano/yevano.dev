@@ -33,8 +33,18 @@ class App extends Component {
             return (
               <Router history={ history }>
                 <NavBar history={ history }/>
-                <Route path='/portfolio' component={ Portfolio } />
-                <Route path='/blog' component={ Blog } />
+                <Route
+                  path='/portfolio'
+                  render={ () =>
+                    <Portfolio />
+                  }
+                />
+                <Route
+                  path='/blog'
+                  component={ () =>
+                    <Blog history={ history } />
+                  }
+                />
               </Router>
             );
           }

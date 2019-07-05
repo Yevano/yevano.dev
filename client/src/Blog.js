@@ -4,7 +4,6 @@ import React, {
 } from 'react';
 import rp from 'request-promise';
 import renderHtml from 'react-render-html';
-import { createBrowserHistory } from 'history';
 import smoothscroll from 'smoothscroll-polyfill';
 import clientConfig from './client.config';
 import {
@@ -18,16 +17,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-const history = createBrowserHistory();
 smoothscroll.polyfill();
-
-history.listen((location, action) => {
-  const node = document.getElementById(history.location.pathname);
-
-  if(node) {
-    window.scrollTo({ left: 0, top: node.offsetTop, behavior: 'smooth' });
-  }
-});
 
 const useStyles = makeStyles(theme => ({
   copyLinkButton: {
@@ -55,10 +45,23 @@ const CopyLinkButton = (props) => {
 
 class Blog extends Component {
   state = {
-    posts: []
+    posts: [],
+    historyUnlisten: null
   };
 
   componentDidMount() {
+    const history = this.props.history;
+
+    const historyUnlisten = history.listen((location, action) => {
+      const node = document.getElementById(history.location.pathname);
+
+      if(node) {
+        window.scrollTo({ left: 0, top: node.offsetTop, behavior: 'smooth' });
+      }
+    });
+
+    this.setState({ historyUnlisten: historyUnlisten });
+
     const options = {
       method: 'POST',
       uri: `https://${clientConfig.apiHost}:${clientConfig.apiPort}/api/db`,
@@ -84,8 +87,12 @@ class Blog extends Component {
     );
   }
 
+  componentWillUnmount() {
+    this.state.historyUnlisten();
+  }
+
   componentDidUpdate() {
-    const node = document.getElementById(history.location.pathname);
+    const node = document.getElementById(this.props.history.location.pathname);
     
     if(node) {
       window.scrollTo({ left: 0, top: node.offsetTop, behavior: 'smooth' });
@@ -122,7 +129,7 @@ class Blog extends Component {
                     float: 'right'
                   } }
                 >
-                  <CopyLinkButton onClick={ () => history.push(`/blog/${post._id}`) } />
+                  <CopyLinkButton onClick={ () => this.props.history.push(`/blog/${post._id}`) } />
                   <Typography variant='body1'>
                     { post.date }
                   </Typography>
