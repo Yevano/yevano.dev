@@ -2,13 +2,6 @@ import React, {
   Component,
   Link
 } from 'react';
-import {
-  Anchor,
-  Box,
-  Button,
-  Grid,
-  Text
-} from 'grommet';
 import rp from 'request-promise';
 import renderHtml from 'react-render-html';
 import { createBrowserHistory } from 'history';
@@ -69,43 +62,7 @@ class Blog extends Component {
 
   render() {
     return (
-      <Box align='center'>
-        { this.state.posts.map((post, i) =>
-          <Box
-            key={ i }
-            align='start'
-            margin='large'
-            border={ { color: 'brand', size: 'small' } }
-            width='80%'
-            pad='small'
-            id={ '/blog/' + post._id }
-            elevation='medium'
-          >
-            <Grid
-              fill
-              rows={ ['fill'] }
-              columns={ ['flex', 'flex'] }
-              areas={ [
-                { name: 'left', start: [0, 0], end: [0, 0] },
-                { name: 'right', start: [1, 0], end: [1, 0] }
-              ] }
-            >
-              <Box gridArea='left' justify='center' align='start'>
-                <Text size='xlarge'>{ post.title }</Text>
-              </Box>
-              <Box gridArea='right' justify='center' align='end'>
-                <ButtonLink
-                  label='Link'
-                  fontSize='20px'
-                  onClick={ () => history.push('/blog/' + post._id) }
-                />
-                <Text size='small'>{ post.date }</Text>
-              </Box>
-            </Grid>
-            { renderHtml(post.body) }
-          </Box>
-        ) }
-      </Box>
+      null
     );
   }
 }
