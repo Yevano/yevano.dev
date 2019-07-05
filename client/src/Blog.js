@@ -30,7 +30,7 @@ const CopyLinkButton = (props) => {
 
   return (
     <Box className={ classes.copyLinkButton }>
-      <CopyToClipboard text={ window.location.href }>
+      <CopyToClipboard text={ props.text }>
         <Button
           variant='contained'
           color='primary'
@@ -129,7 +129,10 @@ class Blog extends Component {
                     float: 'right'
                   } }
                 >
-                  <CopyLinkButton onClick={ () => this.props.history.push(`/blog/${post._id}`) } />
+                  <CopyLinkButton
+                    onClick={ () => this.props.history.push(`/blog/${post._id}`) }
+                    text={ `${window.location.protocol}//${window.location.hostname}:${window.location.port}/blog/${post._id}` }
+                  />
                   <Typography variant='body1'>
                     { post.date }
                   </Typography>
