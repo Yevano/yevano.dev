@@ -4,6 +4,7 @@ import {
   Button,
   Toolbar
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 class NavBar extends Component {
   render() {
@@ -13,15 +14,15 @@ class NavBar extends Component {
           <Button
             color='inherit'
             onClick={ () => this.props.history.push('/portfolio') }
+            style={ {
+              marginLeft: '10px'
+            } }
           >
             Portfolio
           </Button>
           <Button
             color='inherit'
             onClick={ () => this.props.history.push('/blog') }
-            style={ {
-              marginLeft: '10px'
-            } }
           >
             Blog
           </Button>

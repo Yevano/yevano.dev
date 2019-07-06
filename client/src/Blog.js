@@ -33,7 +33,7 @@ const CopyLinkButton = (props) => {
       <CopyToClipboard text={ props.text }>
         <Button
           variant='contained'
-          color='primary'
+          color='secondary'
           onClick={ props.onClick }
         >
           Copy link
