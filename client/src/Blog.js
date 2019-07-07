@@ -1,6 +1,5 @@
 import React, {
-  Component,
-  Link
+  Component
 } from 'react';
 import rp from 'request-promise';
 import renderHtml from 'react-render-html';
@@ -16,6 +15,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import HTMLToMUI from './HTMLToMUI';
 
 smoothscroll.polyfill();
 
@@ -147,7 +147,9 @@ class Blog extends Component {
                 fontFamily: 'Roboto'
               } }
             >
-              { renderHtml(post.body) }
+              <HTMLToMUI>
+                { renderHtml(post.body) }
+              </HTMLToMUI>
             </Box>
           </Paper>
         ) }
