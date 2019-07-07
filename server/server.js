@@ -46,7 +46,7 @@ function run(port, addMiddleware) {
     const action = req.body.action;
 
     switch(action) {
-      case 'add-post':
+      case 'add-post': {
         const pwd = req.body.pwd;
         const title = req.body.title;
         const body = req.body.body;
@@ -65,8 +65,10 @@ function run(port, addMiddleware) {
         } else {
           res.end('ERR');
         }
+
         return;
-      case 'get-posts':
+      }
+      case 'get-posts': {
         var Post = mongoose.model('posts', PostsSchema);
 
         Post.find({ }, (err, docs) => {
@@ -74,6 +76,25 @@ function run(port, addMiddleware) {
         });
 
         return;
+      }
+      case 'edit-post': {
+        const id = req.body.id;
+        const title = req.body.title;
+        const body = req.body.body;
+        const pwd = req.body.pwd;
+
+        if(pwd == 'mibstap58') {
+          var Post = mongoose.model('posts', PostsSchema);
+          Post.findOneAndUpdate({ _id: id }, { title: title, body: body }, { useFindAndModify: false }, (err, doc) => {
+            console.log(err);
+          });
+          res.end('OK');
+        } else {
+          res.end('ERR');
+        }
+
+        return;
+      }
     }
 
     res.end('error');
