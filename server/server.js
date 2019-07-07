@@ -52,7 +52,7 @@ function run(port, addMiddleware) {
         const body = req.body.body;
         const date = req.body.date;
 
-        if(pwd === 'mibstap58') {
+        if(pwd === serverConfig.api.password) {
           var Post = mongoose.model('posts', PostsSchema);
 
           var post = new Post({ body: body, title: title, date: date });
@@ -83,7 +83,7 @@ function run(port, addMiddleware) {
         const body = req.body.body;
         const pwd = req.body.pwd;
 
-        if(pwd == 'mibstap58') {
+        if(pwd == serverConfig.api.password) {
           var Post = mongoose.model('posts', PostsSchema);
           Post.findOneAndUpdate({ _id: id }, { title: title, body: body }, { useFindAndModify: false }, (err, doc) => {
             console.log(err);
