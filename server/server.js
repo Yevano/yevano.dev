@@ -9,7 +9,7 @@ const serverConfig = require('./server.config');
 function run(port, addMiddleware) {
   const Schema = mongoose.Schema;
 
-  const userPassString = serverConfig.mongo.requireAuth ? `${serverConfig.mongo.user}:${serverConfig.mongo.password}@` : '';
+  const userPassString = serverConfig.mongo.requireAuth ? `${serverConfig.mongo.user}:${encodeURIComponent(serverConfig.mongo.password)}@` : '';
   mongoose.connect(`mongodb://${userPassString}localhost/${serverConfig.mongo.db}`, { useNewUrlParser: true });
 
   var PostsSchema = new Schema({
